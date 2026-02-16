@@ -1,12 +1,18 @@
 import AlertCard from "../components/AlertCard";
 import LogTable from "../components/LogTable";
 import AgentStatus from "../components/AgentStatus";
+import { useEffect, useState } from "react";
+
 
 export default function Dashboard() {
-  const logs = [
-    { ip: "192.168.1.10", attack: "Brute Force", severity: "High" },
-    { ip: "10.0.0.5", attack: "SQL Injection", severity: "Critical" }
-  ];
+  const [logs, setLogs] = useState([]);
+useEffect(() => {
+  getLogs().then(data => {
+    setLogs(data);
+  });
+}, []);
+
+  
 
   return (
     <div style={{ padding: "20px", color: "white" }}>
